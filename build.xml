@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<project name="SyncDemoViewer" basedir="." default="pack">
+	<property name="src.dir" value="src"/>
+	<property name="build.dir" value="bin"/>
+
+	<target name="clean">
+		<delete>
+			<fileset dir="${build.dir}">
+				<include name="**/*.class"/>
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac destdir="${build.dir}">
+			<src path="${src.dir}"/>
+		</javac>
+	</target>
+
+	<target name="pack" depends="compile">
+		<jar destfile="./SyncDemoViewer.jar"
+		basedir="${build.dir}"
+		includes="**">
+			<manifest>
+				<attribute name="Main-Class" value="syncDemoViewer.SyncDemoViewerLauncher"/>
+			</manifest>		     
+		</jar>
+	</target>
+
+	
+</project>
